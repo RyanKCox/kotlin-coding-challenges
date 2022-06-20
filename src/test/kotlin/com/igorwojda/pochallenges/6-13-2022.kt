@@ -79,6 +79,7 @@ class Link(val value:Int){
         return list
     }
 }
+
 fun linkListOf(vararg elements:Int):Link?{
     var header:Link? = null
 
@@ -99,35 +100,48 @@ fun linkListOf(vararg elements:Int):Link?{
     return header
 }
 
-
 private fun mergeLinkListSort(vararg elements:Link?):Link?{
-    var header:Link? = null
-    val linkLists = mutableListOf<Link?>()
 
+    //Head of link list to return
+    var header:Link? = null
+
+    //List of the different links for iteration
+    val linkLists = mutableListOf<Link?>()
     elements.forEach { list ->
         linkLists.add(list)
     }
 
+    //While loop variables
+    //current position and boolean for completion
     var position:Link? = null
     var bContinue = true
     while (bContinue){
 
+        //Stop the loop on next iteration unless changed
         bContinue = false
+
+        //Find the location of the min value
         var min = Int.MAX_VALUE
         var minIndex = 0
 
         linkLists.forEachIndexed { index,list->
+            //If the list is null we continue
             if(list != null){
-
+                //If not null, do the while loop again
                 bContinue = true
 
+                //check the first value of the link list against our current min
                 if(list.value < min) {
                     min = list.value
                     minIndex = index
                 }
             }
         }
+
+        //If we found a value in the lists, add to the resulting link list
         if(bContinue){
+            //check if Header has been assigned.
+            //assign current position
             if(header == null) {
                 header = Link(min)
                 position = header
@@ -136,11 +150,12 @@ private fun mergeLinkListSort(vararg elements:Link?):Link?{
                 position!!.next = Link(min)
                 position = position.next
             }
+            //move the head of the selected link list to it's next element
             linkLists[minIndex] = linkLists[minIndex]!!.next
         }
-
-
     }
+
+    //When finished, return the head of the new link list
     return header
 }
 private class LinkListSortTest {
