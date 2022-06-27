@@ -1,5 +1,6 @@
 package com.igorwojda.tree.classic.traversal
 
+import com.igorwojda.pochallenges.node
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
@@ -86,27 +87,60 @@ private class BinarySearchTree<E : Comparable<E>> {
     }
 
     fun traverseDepthFirstPreOrder(): List<E> {
-        TODO("not implemented")
+        fun traverse(node:BinaryNode<E>?):List<E>{
+            if(node == null)
+                return emptyList()
+
+            return listOf(node.data) + traverse(node.left) + traverse(node.right)
+        }
+        return traverse(root)
     }
 
     fun traverseDepthFirstInOrder(): List<E> {
-        TODO("not implemented")
+        fun traverse(node:BinaryNode<E>?):List<E>{
+            if(node == null)
+                return emptyList()
+
+            return traverse(node.left) + listOf(node.data) + traverse(node.right)
+        }
+        return traverse(root)
     }
 
     fun traverseDepthFirstPostOrder(): List<E> {
-        TODO("not implemented")
+        fun traverse(node:BinaryNode<E>?):List<E>{
+            if(node == null)
+                return emptyList()
+            return traverse(node.left) + traverse(node.right) + listOf(node.data)
+        }
+        return traverse(root)
     }
 
     fun traverseDepthFirstPreOrderReversed(): List<E> {
-        TODO("not implemented")
+        fun traverse(node: BinaryNode<E>?):List<E>{
+            if(node == null)
+                return emptyList()
+            return listOf(node.data)+traverse(node.right)+traverse(node.left)
+
+        }
+        return traverse(root)
     }
 
     fun traverseDepthFirstInOrderReversed(): List<E> {
-        TODO("not implemented")
+        fun traverse(node: BinaryNode<E>?):List<E>{
+            if(node == null)
+                return emptyList()
+            return traverse(node.right) + listOf(node.data)+traverse(node.left)
+        }
+        return traverse(root)
     }
 
     fun traverseDepthFirstPostOrderReverse(): List<E> {
-        TODO("not implemented")
+        fun traverse(node:BinaryNode<E>?):List<E>{
+            if(node == null)
+                return emptyList()
+            return traverse(node.right)+traverse(node.left)+listOf(node.data)
+        }
+        return traverse(root)
     }
 }
 
