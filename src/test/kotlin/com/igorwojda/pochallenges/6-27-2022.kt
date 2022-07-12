@@ -3,6 +3,26 @@ package com.igorwojda.pochallenges
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
+fun resumeTrick(ratings: FloatArray): Int {
+    //this is default OUTPUT. You can change it.
+    var result = 0
+    // write your logic here:
+    val list = mutableListOf<Int>()
+
+    ratings.reversed().forEachIndexed{index,it->
+        var count = 1
+        (index downTo  0).forEach{num->
+            if(it >= ratings.reversed()[num])
+                count = list[num] + 1
+        }
+        list.add(count)
+    }
+
+
+    list.sorted().last()
+
+    return list.maxOrNull()!!
+}
 private fun AxisWalk(vararg cases:Int):List<Int>{
     val results = mutableListOf<Int>()
 

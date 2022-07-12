@@ -14,13 +14,13 @@ private class MaxBinaryHeap<E : Comparable<E>> {
         TODO("not implemented")
     }
 
-    private fun getParentIndex(index: Int): Int = TODO("not implemented")
+    private fun getParentIndex(index: Int): Int = (index - 1) / 2
 
-    private fun getLeftChildIndex(index: Int): Int = TODO("not implemented")
+    private fun getLeftChildIndex(index: Int): Int = index * 2 + 1
 
-    private fun getRightChildIndex(index: Int): Int = TODO("not implemented")
+    private fun getRightChildIndex(index: Int): Int = index * 2 + 2
 
-    fun isEmpty(): Boolean = TODO("not implemented")
+    fun isEmpty(): Boolean = items.isEmpty()
 
     private fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
         val tmp = this[index1]
