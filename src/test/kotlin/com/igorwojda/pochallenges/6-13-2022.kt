@@ -80,7 +80,7 @@ class Link(val value:Int){
     }
 }
 
-fun linkListOf(vararg elements:Int):Link?{
+private fun linkListOf(vararg elements:Int):Link?{
     var header:Link? = null
 
     if(elements.isNotEmpty()){
